@@ -1,0 +1,64 @@
+// poawianie się elementów interfejsu
+
+@keyframes showElement {
+  0% {
+    font-size: 0.5rem;
+    top: -100%;
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 0.8;
+  }
+  100% {
+    top: 35%;
+    opacity: 1;
+    font-size: 5rem;
+  }
+}
+
+@keyframes showMenu {
+  0% {
+    top: -100%;
+    opacity: 0;
+  }
+  75% {
+    opacity: 0.8;
+  }
+  100% {
+    top: 50%;
+    opacity: 1;
+  }
+}
+
+//znikanie elementów ogólnie
+
+@keyframes hideElement {
+  0% {
+    font-size: 5rem;
+    top: 35%;
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+
+  100% {
+    top: 0;
+    opacity: 0;
+    font-size: 0.5rem;
+  }
+}
+
+//pojawianie sie znakow
+
+@keyframes showCharacter {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}

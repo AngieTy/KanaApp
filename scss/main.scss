@@ -1,0 +1,631 @@
+@import "./partials/reset";
+@import "./partials/mixins";
+@import "./partials/fonts";
+@import "./partials/media";
+@import "./partials/animations";
+// font-family: 'Roboto', sans-serif;
+// font-family: 'Noto Sans JP', sans-serif;
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  color: rgb(255, 153, 204);
+  overflow: hidden;
+}
+
+main {
+  height: 100vh;
+  width: 100vw;
+  //   background-color: #c0ffee;
+  background-image: url("/img/osaka-2225441_1920.jpg");
+  background-position: center;
+  background-size: 80%;
+  @include column;
+  .container {
+    height: 80%;
+    width: 50%;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 30px;
+
+    box-shadow: 2px -3px 39px -19px cyan;
+
+    .logo {
+      font-size: 5rem;
+      text-align: center;
+      color: rgb(255, 153, 204);
+      text-shadow: 0px 1px 20px hotpink;
+      padding: 20px;
+    }
+  }
+  .start {
+    @include darkenBackground;
+    position: relative;
+    .logo {
+      font-size: 5rem;
+      color: rgb(255, 153, 204);
+      text-shadow: 0px 1px 20px hotpink;
+    }
+    .start-btn {
+      background-color: rgba(0, 0, 0, 0.6);
+      height: 10%;
+      width: 23%;
+      border-radius: 50px;
+      border: 0.5px solid hotpink;
+      box-shadow: 2px -3px 39px -10px hotpink;
+      cursor: pointer;
+      display: flex;
+      @include column;
+      position: absolute;
+      top: 70%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: 0.3s;
+      &:hover {
+        height: 13%;
+        width: 26%;
+        text-shadow: 0 0 3px #100c0f, 0 0 5px #dc078e33, 0 0 10px #fff3;
+        a {
+          font-size: 1.7rem;
+        }
+      }
+
+      a {
+        font-size: 1.5rem;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 500;
+        color: hotpink;
+        transition: 0.3s;
+      }
+    }
+  }
+  .menu,
+  .choice,
+  .quiz-choice,
+  .kana,
+  .kana-flash,
+  .kana-quiz,
+  .hiragana-cards,
+  .hiragana-quiz,
+  .katakana-quiz,
+  .katakana-cards,
+  .quiz-result {
+    display: none;
+  }
+  .menu {
+    @include darkenBackground;
+    @include column;
+
+    .menu_table,
+    .menu_flash,
+    .menu_quiz {
+      color: rgb(255, 153, 204);
+      display: flex;
+      align-items: center;
+      padding: 20px 10px 30px 30px;
+      cursor: pointer;
+      font-size: 1.5rem;
+      transition: 0.3s;
+      text-shadow: 0px 1px 10px rgb(255, 153, 204);
+      &:hover {
+        text-shadow: 0px 1px 20px white;
+        color: white;
+        letter-spacing: 1px;
+      }
+      h2 {
+        padding-bottom: 7px;
+      }
+
+      i {
+        padding-right: 10px;
+      }
+    }
+  }
+  .kana {
+    @include darkenBackground;
+    @include column;
+
+    .kana_btns {
+      display: flex;
+      justify-content: space-evenly;
+      * {
+        font-size: 1.5rem;
+        display: inline-flex;
+        justify-content: space-around;
+        cursor: pointer;
+        border: none;
+        background-color: rgba(0, 0, 0, 0);
+        padding: 10px 0 20px 0;
+        color: cyan;
+        width: 30%;
+        height: 10%;
+        text-align: center;
+        border-bottom: 1px solid cyan;
+        transition: 0.3s;
+        &:hover {
+          text-shadow: 0px 1px 20px rgb(90, 255, 255);
+        }
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+    .kana-back {
+      font-size: 1.5rem;
+      background-color: rgba(0, 0, 0, 0);
+      width: 20%;
+      height: 10%;
+      color: cyan;
+      cursor: pointer;
+      border: none;
+      position: absolute;
+      bottom: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: 0.3s;
+      overflow: hidden;
+      &:focus {
+        border: none;
+      }
+      &:before {
+        position: absolute;
+        top: 50%;
+        left: -15%;
+        content: "<";
+        display: block;
+        color: cyan;
+        transform: translateY(-50%);
+        transition: 0.3s;
+        text-shadow: 0px 1px 20px rgb(90, 255, 255);
+      }
+      &:hover {
+        text-shadow: 0px 1px 20px rgb(90, 255, 255);
+        &:before {
+          left: 9%;
+        }
+      }
+    }
+
+    .kana-table {
+      padding: 32px 0 0 0;
+      height: 75%;
+      .katakana-table,
+      .hiragana-table {
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+      }
+      .hiragana-box,
+      .katakana-box {
+        font-size: 2rem;
+        padding-bottom: 13px;
+      }
+    }
+  }
+
+  .choice,
+  .quiz-choice {
+    @include darkenBackground;
+    position: absolute;
+    top: 0;
+    left: 0;
+    @include column;
+    .choice_container {
+      background-color: rgba(0, 0, 0, 1);
+      border-radius: 30px;
+      box-shadow: 2px -3px 49px -19px cyan;
+      width: 40%;
+      height: 40%;
+      display: flex;
+      @include column;
+      justify-content: space-evenly;
+
+      .choice-header {
+        color: cyan;
+        font-size: 1.7rem;
+        padding-bottom: 20px;
+        text-shadow: 0px 1px 20px rgb(96, 255, 255);
+      }
+      .choice-form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 90%;
+        label {
+          color: cyan;
+          font-size: 1.3rem;
+          transition: 0.3s;
+          &:hover {
+            text-shadow: 0px 1px 20px rgb(96, 255, 255);
+          }
+          &:first-of-type {
+            padding-right: 50px;
+          }
+        }
+        #choice3,
+        #choice4 {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          outline: none;
+          margin: 0;
+          width: 15px;
+          height: 15px;
+          display: inline-block;
+          margin-right: 10px;
+          border-radius: 50%;
+          border: 1px solid cyan;
+          position: relative;
+          &:focus {
+            border: none;
+            background-color: rgba(0, 0, 0, 0);
+          }
+
+          &:checked {
+            transition: 0.3s;
+            box-shadow: 2px -3px 49px -19px cyan;
+          }
+          &:checked:after {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: cyan;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+      }
+
+      .quiz-start {
+        font-size: 1.5rem;
+        display: inline-flex;
+        justify-content: space-around;
+        cursor: pointer;
+        border: none;
+        background-color: rgba(0, 0, 0, 0);
+        padding: 10px 0 20px 0;
+        color: cyan;
+        width: 30%;
+        height: 19%;
+        text-align: center;
+        transition: 0.3s;
+        position: relative;
+        overflow: hidden;
+
+        &:before {
+          content: ">";
+          display: block;
+          position: absolute;
+          color: white;
+          left: -20%;
+          transition: 0.3s;
+          text-shadow: 0px 1px 20px white;
+        }
+        &:after {
+          content: "<";
+          display: block;
+          position: absolute;
+          color: white;
+          right: -20%;
+          transition: 0.3s;
+          text-shadow: 0px 1px 20px white;
+        }
+        &:hover {
+          text-shadow: 0px 1px 20px white;
+          letter-spacing: 2px;
+          color: white;
+          &:before {
+            left: 5%;
+          }
+          &:after {
+            right: 5%;
+          }
+        }
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+  .kana-flash {
+    @include darkenBackground;
+    @include column;
+    .flash-container {
+      display: flex;
+      @include column;
+      justify-content: flex-start;
+      width: 40%;
+      height: 80%;
+      background-color: blue;
+      .counter {
+        padding: 20px;
+      }
+      [data-flash="kana"] {
+        background-color: royalblue;
+        height: 70%;
+        width: 100%;
+      }
+      .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 4rem;
+        cursor: pointer;
+      }
+      .next {
+        right: 25%;
+      }
+      .prev {
+        left: 25%;
+      }
+    }
+  }
+  .kana-quiz {
+    @include darkenBackground;
+    @include column;
+    .quiz-container {
+      display: flex;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 30px;
+      box-shadow: 2px -3px 39px -19px cyan;
+      @include column;
+      justify-content: flex-start;
+      width: 40%;
+      height: 80%;
+      .counter {
+        font-size: 1.5rem;
+        padding: 20px;
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        .wrong {
+          color: rgb(255, 87, 87);
+          text-shadow: 0px 1px 20px rgb(255, 87, 87);
+        }
+        .correct {
+          color: rgb(86, 255, 142);
+          text-shadow: 0px 1px 20px rgb(86, 255, 142);
+        }
+      }
+      [data-quiz="kana"] {
+        background-color: rgba(0, 0, 0, 0.6);
+        height: 83%;
+        width: 100%;
+        flex-direction: column;
+        .kana-place {
+          height: 100%;
+          display: flex;
+          @include column;
+          p {
+            color: rgb(90, 255, 255);
+            font-size: 12rem;
+            text-shadow: 0px 1px 20px rgb(90, 255, 255);
+          }
+          .correctAnswear {
+            color: rgb(86, 255, 142);
+            text-shadow: 0px 1px 20px rgb(86, 255, 142);
+          }
+          .wrongAnswear {
+            color: rgb(255, 87, 87);
+            text-shadow: 0px 1px 20px rgb(255, 87, 87);
+          }
+        }
+      }
+      .arrow {
+        width: 70px;
+        height: 70px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        transform-origin: 0% 50%;
+        font-size: 5rem;
+        cursor: pointer;
+      }
+      .next {
+        right: -20%;
+        transition: 0.3s;
+        // transform: translateX(-50%);
+        &:hover {
+          text-shadow: 0px 1px 20px hotpink;
+          transform: translateY(-53%);
+          color: rgb(255, 153, 204);
+          font-size: 6rem;
+          right: -21%;
+        }
+      }
+      #kana-name {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-color: rgba(0, 0, 0, 0);
+        height: 2rem;
+        font-size: 1.4rem;
+        font-weight: 400;
+        color: white;
+        text-align: center;
+        border: none;
+        width: 50%;
+        align-self: center;
+        text-shadow: 0px 1px 20px white;
+
+        &:focus {
+          outline: none;
+        }
+        &::placeholder {
+          appearance: none;
+          font-size: 1.2rem;
+          color: rgba(255, 255, 101, 0.6);
+          text-shadow: 0px 1px 20px rgba(255, 255, 101, 0.6);
+        }
+      }
+      .isCorrect {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 40%;
+        cursor: pointer;
+        display: inline-block;
+        background-color: rgba(0, 0, 0, 0);
+        height: 1.5rem;
+        margin: 20px 0;
+        flex-direction: row;
+        font-size: 1.2rem;
+        font-weight: 400;
+        color: hotpink;
+        text-align: center;
+        border: none;
+        align-self: center;
+        transition: 0.3s;
+        &:focus {
+          outline: none;
+        }
+        &:hover {
+          text-shadow: 0px 1px 20px rgb(255, 153, 204);
+          letter-spacing: 1px;
+        }
+      }
+      .quiz-back-menu {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        display: inline-block;
+        border: none;
+        width: 40%;
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0);
+        height: 1.5rem;
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+        font-weight: 400;
+        color: hotpink;
+        text-align: center;
+        align-self: center;
+        transition: 0.3s;
+        &:focus {
+          outline: none;
+        }
+        &:hover {
+          text-shadow: 0px 1px 20px rgb(255, 153, 204);
+          letter-spacing: 1px;
+        }
+      }
+    }
+  }
+
+  .quiz-result {
+    @include darkenBackground;
+    @include column;
+    .kana-quiz-results {
+      display: flex;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 30px;
+      box-shadow: 2px -3px 39px -19px cyan;
+      @include column;
+      justify-content: space-evenly;
+      width: 40%;
+      height: 80%;
+      .results-header {
+        padding: 0 20px;
+        text-align: center;
+        font-size: 3rem;
+        color: rgb(86, 255, 142);
+        text-shadow: 0px 1px 20px rgb(86, 255, 142);
+      }
+      .results-text {
+        font-size: 1.7rem;
+        color: hotpink;
+        text-shadow: 0px 1px 20px hotpink;
+      }
+
+      .result {
+        font-size: 3rem;
+        color: white;
+        text-shadow: 0px 1px 20px white;
+      }
+      .back-result {
+        font-size: 1.5rem;
+        display: inline-flex;
+        justify-content: space-around;
+        cursor: pointer;
+        border: none;
+        background-color: rgba(0, 0, 0, 0);
+        padding: 10px 0 20px 0;
+        color: cyan;
+        width: 60%;
+        height: 19%;
+        text-align: center;
+        transition: 0.3s;
+        position: relative;
+        overflow: hidden;
+
+        &:before {
+          content: ">";
+          display: block;
+          position: absolute;
+          color: white;
+          left: -20%;
+          transition: 0.3s;
+          text-shadow: 0px 1px 20px white;
+        }
+        &:after {
+          content: "<";
+          display: block;
+          position: absolute;
+          color: white;
+          right: -20%;
+          transition: 0.3s;
+          text-shadow: 0px 1px 20px white;
+        }
+        &:hover {
+          text-shadow: 0px 1px 20px white;
+          letter-spacing: 2px;
+          color: white;
+          &:before {
+            left: 6%;
+          }
+          &:after {
+            right: 6%;
+          }
+        }
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+}
+
+//pojawianie się elementu logo
+
+.show {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: showElement ease 0.7s;
+}
+.showMenu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: showMenu ease 0.7s;
+}
+
+//chowanie elementów na display none
+.hide {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: hideElement ease 0.7s;
+}
+
+.showCharacter {
+  animation: showCharacter 0.5s ease;
+}

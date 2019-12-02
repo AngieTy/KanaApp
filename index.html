@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-16" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <main>
+      <!-- strona startowa -->
+      <div class="start">
+        <h1 class="logo show">
+          Kana!
+        </h1>
+        <div class="start-btn"><a href="#">Zacznij naukę</a></div>
+      </div>
+      <!-- główny interfejs aplikacji -->
+      <section class="menu ">
+        <div class="container showMenu">
+          <h1 class="logo">
+            Kana!
+          </h1>
+          <div class="menu_table">
+            <i class="fas fa-search"></i>
+            <div class="menu_table-box">
+              <h2>Ściągawka</h2>
+              <span>Tablica znaków</span>
+            </div>
+          </div>
+          <div class="menu_flash">
+            <i class="fas fa-graduation-cap"></i>
+            <div class="menu_flash-box">
+              <h2>Fiszki</h2>
+              <span>Ucz się we własnym tempie</span>
+            </div>
+          </div>
+          <div class="menu_quiz">
+            <i class="fas fa-user-ninja"></i>
+            <div class="menu_quiz-box">
+              <h2>Quiz</h2>
+              <span>Sprawdź się!</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- tabela ze znakami -->
+      <section class="kana">
+        <div class=" showMenu container">
+          <div class="kana_btns">
+            <button class="hiragana">Hiragana</button>
+            <button class="katakana">Katakana</button>
+          </div>
+
+          <div class="kana-table">
+            <div class="hiragana-table"></div>
+            <div class="katakana-table"></div>
+          </div>
+          <button class="kana-back">Powrót</button>
+        </div>
+      </section>
+      <!-- okienko wyboru kany w fiszkach-->
+      <section class="choice">
+        <div class="choice_container showMenu">
+          <h2 class="choice-header">Chcę się uczyć:</h2>
+          <div class="choice-form">
+            <input type="radio" id="choice1" name="kana" value="hiragana" />
+            <label for="hiragana">Hiragana</label>
+            <input type="radio" id="choice2" name="kana" value="katakana" />
+            <label for="katakana">Katakana</label>
+          </div>
+          <button class="choice-start">Start</button>
+        </div>
+      </section>
+      <!-- okienko wyboru kany w quizie -->
+      <section class="quiz-choice ">
+        <div class="choice_container showMenu">
+          <h2 class="choice-header">Chcę się sprawdzić w:</h2>
+          <div class="choice-form">
+            <input type="radio" id="choice3" name="kana" value="hiragana" />
+            <label for="hiragana">Hiragana</label>
+            <input type="radio" id="choice4" name="kana" value="katakana" />
+            <label for="katakana">Katakana</label>
+          </div>
+          <button class="quiz-start">Start</button>
+        </div>
+      </section>
+      <!-- Odpalony quiz -->
+      <section class="kana-quiz">
+        <div class="quiz-container showMenu">
+          <div class="counter">
+            <span class="wrong"></span>
+            <div class="quiz-counter">
+              <span class="kana-id"></span>/<span
+                class="kana-quantity"
+                class="all-elements"
+                >46</span
+              >
+            </div>
+            <span class="correct"></span>
+          </div>
+          <div data-quiz="kana" class="hiragana-quiz">
+            <div class="kana-place"></div>
+            <input type="text" id="kana-name" placeholder="wpisz nazwę tutaj" />
+            <button class="isCorrect">Sprawdź</button>
+            <button class="quiz-back-menu">Powrót</button>
+          </div>
+          <div data-quiz="kana" class="katakana-quiz"></div>
+          <span class="arrow next">></span>
+        </div>
+      </section>
+      <section class="quiz-result">
+        <div class="kana-quiz-results showMenu">
+          <h2 class="results-header">Udało Ci się ukończyć quiz!</h2>
+          <p class="results-text">oto twoje wyniki:</p>
+          <div class="results-box">
+            <p class="result">
+              <span class="correct-result"></span
+              ><span class="abolute-value">/46</span>
+            </p>
+          </div>
+          <button class="back-result">Powrót do menu</button>
+        </div>
+      </section>
+
+      <!-- odpalone fiszki -->
+      <section class="kana-flash">
+        <div class="flash-container">
+          <div class="counter">
+            <span class="kana-id">5</span>/<span class="kana-quantity">46</span>
+          </div>
+          <div data-flash="kana" class="hiragana-cards"></div>
+          <div data-flash="kana" class="katakana-cards"></div>
+          <span class="arrow next">></span>
+          <span class="arrow prev"><</span>
+        </div>
+      </section>
+    </main>
+    <script src="./js/out.js"></script>
+  </body>
+</html>
