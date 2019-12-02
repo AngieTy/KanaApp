@@ -1,6 +1,6 @@
 import "../scss/main.scss";
 document.addEventListener("DOMContentLoaded", function() {
-  //główna strona
+  // kliknięcie na button strony głównej i przejscie do menu głównego
   const startBtn = document.querySelector(".start-btn");
   const start = document.querySelector(".start");
   const menu = document.querySelector(".menu");
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
     menu.style.display = "flex";
   });
 
-  // wejscie do tablic
+  // wejscie do sekcji tablic
   const kana = document.querySelector(".kana");
   const menuTable = document.querySelector(".menu_table");
   menuTable.addEventListener("click", function() {
@@ -48,7 +48,6 @@ document.addEventListener("DOMContentLoaded", function() {
           hiraganaTable
             .find(".hiragana-box p:first-child")
             .addClass("showCharacter");
-          katakanaTable.empty();
           katakanaTable.css("display", "none");
           hiraganaTable.css("display", "flex");
         }
@@ -62,20 +61,32 @@ document.addEventListener("DOMContentLoaded", function() {
           katakanaTable
             .find(".katakana-box p:first-child")
             .addClass("showCharacter");
-          hiraganaTable.empty();
+
           hiraganaTable.css("display", "none");
           katakanaTable.css("display", "flex");
         }
       });
     }
+
+    //usunięcie znaków, aby podczas kolejnego kliknięcia nie dublowały się
+
+    $(".hiragana-table")
+      .children()
+      .remove();
+
+    $(".katakana-table")
+      .children()
+      .remove();
   });
 
-  //przycisk powrotu do menu glownego
+  //przycisk powrotu do menu glownego i czyszczenie tabel ze znaków
 
   const goBack = document.querySelector(".kana-back");
   goBack.addEventListener("click", function() {
     menu.style.display = "flex";
     kana.style.display = "none";
+    $(".hiragana-box").detach();
+    $(".katakana-box").detach();
   });
 
   //wejscie do okna wyboru fiszek
