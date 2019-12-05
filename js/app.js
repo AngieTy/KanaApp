@@ -215,7 +215,9 @@ document.addEventListener("DOMContentLoaded", function() {
         kanaPlace.children("p").addClass("correctAnswear");
         isCorrect.attr("disabled", "true");
         correctArray.push(randomKana.splice(0, 1));
-        $("#kana-name").val("");
+        $(".katakana-quiz")
+          .find("#kana-name")
+          .val("");
         correctAnswers.text(correctArray.length);
         wrongAnswers.text(failArray.length);
 
@@ -234,7 +236,9 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log(correctArray);
         console.log(failArray);
         console.log(randomKana);
-        inputQuiz.val("");
+        $(".hiragana-quiz")
+          .find("#kana-name")
+          .val("");
         correctAnswers.text(correctArray.length);
         wrongAnswers.text(failArray.length);
 
@@ -248,7 +252,9 @@ document.addEventListener("DOMContentLoaded", function() {
         kanaPlace.children("p").addClass("wrongAnswear");
         isCorrect.attr("disabled", "true");
         failArray.push(randomKana.splice(0, 1));
-        inputQuiz.val("");
+        $(".katakana-quiz")
+          .find("#kana-name")
+          .val("");
         correctAnswers.text(correctArray.length);
         wrongAnswers.text(failArray.length);
 
@@ -265,7 +271,9 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log(correctArray);
         console.log(failArray);
         console.log(randomKana);
-        inputQuiz.val("");
+        $(".hiragana-quiz")
+          .find("#kana-name")
+          .val("");
         correctAnswers.text(correctArray.length);
         wrongAnswers.text(failArray.length);
         return;
