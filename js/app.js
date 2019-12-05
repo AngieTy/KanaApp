@@ -196,6 +196,7 @@ document.addEventListener("DOMContentLoaded", function() {
     correctAnswers.text(correctArray.length);
     wrongAnswers.text(failArray.length);
 
+    //sprawdzenie poprawnosci wpisanego znaczenia w inpucie
     isCorrect.on("click", function() {
       if (randomKana.length === 43) {
         const kanaQuizResults = $(".quiz-result");
@@ -229,7 +230,6 @@ document.addEventListener("DOMContentLoaded", function() {
           .val() === randomKana[0].meaning
       ) {
         kanaPlace.children("p").addClass("correctAnswear");
-        console.log("prawidlowo!");
         console.log(randomKana);
         isCorrect.attr("disabled", "true");
         correctArray.push(randomKana.splice(0, 1));
@@ -257,7 +257,6 @@ document.addEventListener("DOMContentLoaded", function() {
           .val("");
         correctAnswers.text(correctArray.length);
         wrongAnswers.text(failArray.length);
-
         return;
       }
       if (
@@ -268,9 +267,6 @@ document.addEventListener("DOMContentLoaded", function() {
         kanaPlace.children("p").addClass("wrongAnswear");
         isCorrect.attr("disabled", "true");
         failArray.push(randomKana.splice(0, 1));
-        console.log(correctArray);
-        console.log(failArray);
-        console.log(randomKana);
         $(".hiragana-quiz")
           .find("#kana-name")
           .val("");
@@ -280,6 +276,7 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     });
 
+    //wybor kolejnego znaku
     let number = 1;
     nextArrow.on("click", function() {
       $(".kana-place")
@@ -324,11 +321,24 @@ document.addEventListener("DOMContentLoaded", function() {
         .css("display", "none");
       menu.style.display = "flex";
       if (correctArray.length > 0) {
-        randomKana.push(...correctArray.splice(0, correctArray.length));
+        let newArray1 = [];
+        newArray1.push(...correctArray.splice(0, correctArray.length));
+        // console.log(newArray1);
+        for (let i = 0; i < newArray1.length; i++) {
+          randomKana.push(newArray1[i][0]);
+        }
+        newArray1 = [];
+        // console.log(newArray1);
       }
 
       if (failArray.length > 0) {
-        randomKana.push(...failArray.splice(0, failArray.length));
+        let newArray1 = [];
+        newArray1.push(...failArray.splice(0, failArray.length));
+
+        for (let i = 0; i < newArray1.length; i++) {
+          randomKana.push(newArray1[i][0]);
+        }
+        newArray1 = [];
       }
       if ($(".kana-place").children().length > 0) {
         $(".kana-place")
@@ -338,6 +348,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     const resultsBack = $(".back-result");
     resultsBack.on("click", function() {
+      isCorrect.removeAttr("disabled");
       $(".kana-place")
         .children("p")
         .removeClass("wrongAnswear");
@@ -350,11 +361,22 @@ document.addEventListener("DOMContentLoaded", function() {
         .css("display", "none");
       menu.style.display = "flex";
       if (correctArray.length > 0) {
-        randomKana.push(...correctArray.splice(0, correctArray.length));
+        let newArray1 = [];
+        newArray1.push(...correctArray.splice(0, correctArray.length));
+
+        for (let i = 0; i < newArray1.length; i++) {
+          randomKana.push(newArray1[i][0]);
+        }
+        newArray1 = [];
       }
 
       if (failArray.length > 0) {
-        randomKana.push(...failArray.splice(0, failArray.length));
+        let newArray1 = [];
+        newArray1.push(...failArray.splice(0, failArray.length));
+        for (let i = 0; i < newArray1.length; i++) {
+          randomKana.push(newArray1[i][0]);
+        }
+        newArray1 = [];
       }
     });
   }
