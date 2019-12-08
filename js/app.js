@@ -146,8 +146,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const hiraganaQuiz = document.querySelector(".hiragana-quiz");
     const katakanaQuiz = document.querySelector(".katakana-quiz");
     const quizInputs = document.querySelectorAll("#choice3, #choice4"); // wybor znakow w quizie
-
+    let number = 1;
     quizStartBtn.addEventListener("click", function() {
+      kanaNumber.text(number);
       if ($(".kana-place").children().length > 0) {
         $(".kana-place")
           .children()
@@ -179,8 +180,8 @@ document.addEventListener("DOMContentLoaded", function() {
         menu.style.display = "none";
         correctAnswers.text("0");
         wrongAnswers.text("0");
-        const numberCharacterId = document.querySelector(".kana-id");
-        numberCharacterId.innerText = 1;
+        // const numberCharacterId = document.querySelector(".kana-id");
+        // numberCharacterId.innerText = 1;
       }
     });
 
@@ -197,17 +198,13 @@ document.addEventListener("DOMContentLoaded", function() {
     wrongAnswers.text(failArray.length);
 
     //sprawdzenie poprawnosci wpisanego znaczenia w inpucie
+    // debugger;
     isCorrect.on("click", function() {
-      if (randomKana.length === 43) {
-        const kanaQuizResults = $(".quiz-result");
-        const correctResult = $(".correct-result");
-        //pojawienie się diva z koncowym wynikiem
-        kanaQuiz.style.display = "none";
-        kanaQuizResults.css("display", "flex");
-        correctResult.text(correctArray.length);
-        isCorrect.removeAttr("disabled");
-      }
-
+      console.log(
+        $(".hiragana-quiz")
+          .find("#kana-name")
+          .val()
+      );
       if (
         $(".katakana-quiz")
           .find("#kana-name")
@@ -223,8 +220,7 @@ document.addEventListener("DOMContentLoaded", function() {
         wrongAnswers.text(failArray.length);
 
         return;
-      }
-      if (
+      } else if (
         $(".hiragana-quiz")
           .find("#kana-name")
           .val() === randomKana[0].meaning
@@ -243,8 +239,7 @@ document.addEventListener("DOMContentLoaded", function() {
         wrongAnswers.text(failArray.length);
 
         return;
-      }
-      if (
+      } else if (
         $(".katakana-quiz")
           .find("#kana-name")
           .val() !== randomKana[0].meaning
@@ -258,12 +253,16 @@ document.addEventListener("DOMContentLoaded", function() {
         correctAnswers.text(correctArray.length);
         wrongAnswers.text(failArray.length);
         return;
-      }
-      if (
+      } else if (
         $(".hiragana-quiz")
           .find("#kana-name")
           .val() !== randomKana[0].meaning
       ) {
+        console.log(
+          $(".hiragana-quiz")
+            .find("#kana-name")
+            .val()
+        );
         kanaPlace.children("p").addClass("wrongAnswear");
         isCorrect.attr("disabled", "true");
         failArray.push(randomKana.splice(0, 1));
@@ -273,11 +272,20 @@ document.addEventListener("DOMContentLoaded", function() {
         correctAnswers.text(correctArray.length);
         wrongAnswers.text(failArray.length);
         return;
+      }
+
+      if (randomKana.length === 43) {
+        const kanaQuizResults = $(".quiz-result");
+        const correctResult = $(".correct-result");
+        //pojawienie się diva z koncowym wynikiem
+        kanaQuiz.style.display = "none";
+        kanaQuizResults.css("display", "flex");
+        correctResult.text(correctArray.length);
+        isCorrect.removeAttr("disabled");
       }
     });
 
     //wybor kolejnego znaku
-    let number = 1;
     nextArrow.on("click", function() {
       $(".kana-place")
         .children("p")
@@ -285,7 +293,6 @@ document.addEventListener("DOMContentLoaded", function() {
       $(".kana-place")
         .children("p")
         .removeClass("correctAnswear");
-      number = 1;
       number = number + 1;
       isCorrect.removeAttr("disabled");
       if ($(".hiragana-quiz").length) {
@@ -307,6 +314,7 @@ document.addEventListener("DOMContentLoaded", function() {
     //przycisk powrotu do menu glownego z quizu
     const quizBack = $(".quiz-back-menu");
     quizBack.on("click", function() {
+      number = 1;
       isCorrect.removeAttr("disabled");
       $(".kana-place")
         .children("p")
@@ -323,18 +331,15 @@ document.addEventListener("DOMContentLoaded", function() {
       if (correctArray.length > 0) {
         let newArray1 = [];
         newArray1.push(...correctArray.splice(0, correctArray.length));
-        // console.log(newArray1);
         for (let i = 0; i < newArray1.length; i++) {
           randomKana.push(newArray1[i][0]);
         }
         newArray1 = [];
-        // console.log(newArray1);
       }
 
       if (failArray.length > 0) {
         let newArray1 = [];
         newArray1.push(...failArray.splice(0, failArray.length));
-
         for (let i = 0; i < newArray1.length; i++) {
           randomKana.push(newArray1[i][0]);
         }
@@ -348,6 +353,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     const resultsBack = $(".back-result");
     resultsBack.on("click", function() {
+      number = 1;
       isCorrect.removeAttr("disabled");
       $(".kana-place")
         .children("p")
