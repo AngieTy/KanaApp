@@ -129,7 +129,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
   //czyszczenie buttona z disable, inputa z wartosci i przywracanie starych table
   const kanaPlace = $(".kana-place"); //miejsce wyswietlenia znaku
-  const inputQuiz = $("#kana-name"); //input do wpisania nazwy
   const wrongAnswers = $(".wrong"); //miejsce na zle odpowiedzi
   const correctAnswers = $(".correct"); //miejsce na dobre odpowiedzi
   const kanaNumber = $(".kana-id"); //kolejny numer wylosowanego znaku
@@ -140,14 +139,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
   loadKana1();
 
+  const hiraganaCorrect = $(".hiragana-quiz").find(".isCorrect");
+  const katakanaCorrect = $(".katakana-quiz").find(".isCorrect");
+
   function renderKanaQuiz(characters) {
+    const inputKatakana = $(".katakana-quiz").find("#kana-name");
+    const inputHiragana = $(".hiragana-quiz").find("#kana-name");
     const quizStartBtn = document.querySelector(".quiz-start"); //rozpoczecie quizu
     const kanaQuiz = document.querySelector(".kana-quiz"); //okno wyswietlania znakow
     const hiraganaQuiz = document.querySelector(".hiragana-quiz");
     const katakanaQuiz = document.querySelector(".katakana-quiz");
     const quizInputs = document.querySelectorAll("#choice3, #choice4"); // wybor znakow w quizie
     let number = 1;
+
     quizStartBtn.addEventListener("click", function() {
+      console.log(randomKana[0].meaning);
       kanaNumber.text(number);
       if ($(".kana-place").children().length > 0) {
         $(".kana-place")
@@ -161,28 +167,18 @@ document.addEventListener("DOMContentLoaded", function() {
         $(hiraganaQuiz)
           .find(kanaPlace)
           .append($(`<p>${randomKana[0].hiragana}</p>`));
-        kanaQuiz.style.display = "flex";
-        quizChoiceWindow.style.display = "none";
-        menu.style.display = "none";
-        correctAnswers.text("0");
-        wrongAnswers.text("0");
-        const numberCharacterId = document.querySelector(".kana-id");
-        numberCharacterId.innerText = 1;
       } else if (quizInputs[1].checked) {
         katakanaQuiz.style.display = "flex";
         hiraganaQuiz.style.display = "none";
         $(katakanaQuiz)
           .find(kanaPlace)
           .append($(`<p>${randomKana[0].katakana}</p>`));
-        console.log(randomKana[0].meaning);
-        kanaQuiz.style.display = "flex";
-        quizChoiceWindow.style.display = "none";
-        menu.style.display = "none";
-        correctAnswers.text("0");
-        wrongAnswers.text("0");
-        // const numberCharacterId = document.querySelector(".kana-id");
-        // numberCharacterId.innerText = 1;
       }
+      kanaQuiz.style.display = "flex";
+      quizChoiceWindow.style.display = "none";
+      menu.style.display = "none";
+      correctAnswers.text("0");
+      wrongAnswers.text("0");
     });
 
     //przypisanie wartosci z json server do tablicy generalnej
@@ -199,81 +195,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     //sprawdzenie poprawnosci wpisanego znaczenia w inpucie
     // debugger;
-    isCorrect.on("click", function() {
-      console.log(
-        $(".hiragana-quiz")
-          .find("#kana-name")
-          .val()
-      );
-      if (
-        $(".katakana-quiz")
-          .find("#kana-name")
-          .val() === randomKana[0].meaning
-      ) {
-        kanaPlace.children("p").addClass("correctAnswear");
-        isCorrect.attr("disabled", "true");
-        correctArray.push(randomKana.splice(0, 1));
-        $(".katakana-quiz")
-          .find("#kana-name")
-          .val("");
-        correctAnswers.text(correctArray.length);
-        wrongAnswers.text(failArray.length);
 
-        return;
-      } else if (
-        $(".hiragana-quiz")
-          .find("#kana-name")
-          .val() === randomKana[0].meaning
-      ) {
-        kanaPlace.children("p").addClass("correctAnswear");
-        console.log(randomKana);
-        isCorrect.attr("disabled", "true");
-        correctArray.push(randomKana.splice(0, 1));
-        console.log(correctArray);
-        console.log(failArray);
-        console.log(randomKana);
-        $(".hiragana-quiz")
-          .find("#kana-name")
-          .val("");
-        correctAnswers.text(correctArray.length);
-        wrongAnswers.text(failArray.length);
-
-        return;
-      } else if (
-        $(".katakana-quiz")
-          .find("#kana-name")
-          .val() !== randomKana[0].meaning
-      ) {
-        kanaPlace.children("p").addClass("wrongAnswear");
-        isCorrect.attr("disabled", "true");
-        failArray.push(randomKana.splice(0, 1));
-        $(".katakana-quiz")
-          .find("#kana-name")
-          .val("");
-        correctAnswers.text(correctArray.length);
-        wrongAnswers.text(failArray.length);
-        return;
-      } else if (
-        $(".hiragana-quiz")
-          .find("#kana-name")
-          .val() !== randomKana[0].meaning
-      ) {
-        console.log(
-          $(".hiragana-quiz")
-            .find("#kana-name")
-            .val()
-        );
-        kanaPlace.children("p").addClass("wrongAnswear");
-        isCorrect.attr("disabled", "true");
-        failArray.push(randomKana.splice(0, 1));
-        $(".hiragana-quiz")
-          .find("#kana-name")
-          .val("");
-        correctAnswers.text(correctArray.length);
-        wrongAnswers.text(failArray.length);
-        return;
-      }
-
+    hiraganaCorrect.on("click", function() {
       if (randomKana.length === 43) {
         const kanaQuizResults = $(".quiz-result");
         const correctResult = $(".correct-result");
@@ -281,7 +204,61 @@ document.addEventListener("DOMContentLoaded", function() {
         kanaQuiz.style.display = "none";
         kanaQuizResults.css("display", "flex");
         correctResult.text(correctArray.length);
-        isCorrect.removeAttr("disabled");
+        hiraganaCorrect.removeAttr("disabled");
+        inputHiragana.val("");
+        return;
+      }
+      if (inputHiragana.val() !== randomKana[0].meaning) {
+        inputHiragana.val("");
+        kanaPlace.children("p").addClass("wrongAnswear");
+        hiraganaCorrect.attr("disabled", "true");
+        failArray.push(randomKana.splice(0, 1));
+        correctAnswers.text(correctArray.length);
+        wrongAnswers.text(failArray.length);
+        return;
+      }
+      if (inputHiragana.val() === randomKana[0].meaning) {
+        kanaPlace.children("p").addClass("correctAnswear");
+        hiraganaCorrect.attr("disabled", "true");
+        correctArray.push(randomKana.splice(0, 1));
+        inputHiragana.val("");
+        correctAnswers.text(correctArray.length);
+        wrongAnswers.text(failArray.length);
+        return;
+      }
+      console.log(randomKana.length);
+    });
+
+    katakanaCorrect.on("click", function() {
+      if (randomKana.length === 43) {
+        const kanaQuizResults = $(".quiz-result");
+        const correctResult = $(".correct-result");
+        //pojawienie się diva z koncowym wynikiem
+        kanaQuiz.style.display = "none";
+        kanaQuizResults.css("display", "flex");
+        correctResult.text(correctArray.length);
+        katakanaCorrect.removeAttr("disabled");
+        inputKatakana.val("");
+        return;
+      }
+
+      if (inputKatakana.val() === randomKana[0].meaning) {
+        kanaPlace.children("p").addClass("correctAnswear");
+        katakanaCorrect.attr("disabled", "true");
+        correctArray.push(randomKana.splice(0, 1));
+        inputKatakana.val("");
+        correctAnswers.text(correctArray.length);
+        wrongAnswers.text(failArray.length);
+        return;
+      }
+      if (inputKatakana.val() !== randomKana[0].meaning) {
+        kanaPlace.children("p").addClass("wrongAnswear");
+        katakanaCorrect.attr("disabled", "true");
+        failArray.push(randomKana.splice(0, 1));
+        inputKatakana.val("");
+        correctAnswers.text(correctArray.length);
+        wrongAnswers.text(failArray.length);
+        return;
       }
     });
 
