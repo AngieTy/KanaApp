@@ -117,6 +117,15 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
+  //wyjście z fiszek
+
+  const flashBack = document.querySelector(".flash-back-menu");
+
+  flashBack.addEventListener("click", function() {
+    menu.style.display = "flex";
+    kanaFlash.style.display = "none";
+  });
+
   //wejscie do ookna wyboru quizu
 
   const quiz = document.querySelector(".menu_quiz");
