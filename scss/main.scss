@@ -151,6 +151,7 @@ main {
       }
     }
     .kana-back {
+      outline: none;
       font-size: 1.5rem;
       background-color: rgba(0, 0, 0, 0);
       width: 20%;
@@ -234,6 +235,7 @@ main {
         justify-content: center;
         width: 90%;
         label {
+          cursor: pointer;
           color: cyan;
           font-size: 1.3rem;
           transition: 0.3s;
@@ -246,6 +248,7 @@ main {
         }
         #choice3,
         #choice4 {
+          cursor: pointer;
           -webkit-appearance: none;
           -moz-appearance: none;
           appearance: none;
@@ -575,6 +578,33 @@ main {
         }
         &:focus {
           outline: none;
+        }
+      }
+      .result-score-box {
+        height: 10vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .score-axis {
+          height: 3vh;
+          width: 70%;
+          background-color: white;
+          border-radius: 50px;
+          position: relative;
+          overflow: hidden;
+
+          &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 3vh;
+            width: 0;
+            background-color: gold;
+            border-radius: 50px;
+          }
         }
       }
     }

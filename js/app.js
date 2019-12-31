@@ -120,7 +120,6 @@ document.addEventListener("DOMContentLoaded", function() {
   //wyjście z fiszek
 
   const flashBack = document.querySelector(".flash-back-menu");
-
   flashBack.addEventListener("click", function() {
     menu.style.display = "flex";
     kanaFlash.style.display = "none";
@@ -206,7 +205,6 @@ document.addEventListener("DOMContentLoaded", function() {
     wrongAnswers.text(failArray.length);
 
     //sprawdzenie poprawnosci wpisanego znaczenia w inpucie
-    // debugger;
 
     hiraganaCorrect.on("click", function() {
       if (inputHiragana.val() !== randomKana[0].meaning) {
