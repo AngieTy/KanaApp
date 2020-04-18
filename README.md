@@ -16,6 +16,8 @@ If you want to check this app you need to install JSON server at your IDE.
 - open in terminal folder with kana.json and write in console: json-server --watch kana.json;
 
 ![home](./screenshots/home.png "Home page");
-![cheat-sheet](./screenshots/cheatheet.png "Cheat sheet");
-![quiz](./screenshots/quiz.png "Quiz");
+
+![cheat-sheet](./screenshots/cheatsheet.png "Cheat sheet");
+
+![quiz](./screenshots/quiz1.png "Quiz");
 
