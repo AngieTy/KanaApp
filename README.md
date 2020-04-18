@@ -1,15 +1,16 @@
 # KanaApp
+
 Simple project to learning japanese characters: hiragana and katakana.
 
-I create this application as a final Coders Lab bootcamp project. 
-I always was interested in japanese culture, specially manga and anime. I started learning japanese hiragana and katakana but I was bored writing another lines of characters. So I decided to learn more effectively by creating my own app for it. 
+I create this application as a final Coders Lab bootcamp project.
+I always was interested in japanese culture, specially manga and anime. I started learning japanese hiragana and katakana but I was bored writing another lines of characters. So I decided to learn more effectively by creating my own app for it.
 Application shows 3 elements in menu:
-  *  two tables
-  *  flashes
-  *  quiz
-After choosing "flashes" or "quiz" you can choose: if you want to hiragana or katakana.
-At the moment flashes doesn't work, more important for me is to finish quiz section. 
+
+- two tables
+- flashes
+- quiz
 
 If you want to check this app you need to install JSON server at your IDE.
-  * install JSON in console in main folder: npm install json-server (you have to install npm before!);
-  * open in terminal folder with kana.json and write in console: json-server --watch kana.json;
+
+- install JSON in console in main folder: npm install json-server (you have to install npm node.js and before!);
+- open in terminal folder with kana.json and write in console: json-server --watch kana.json;
