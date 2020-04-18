@@ -15,9 +15,13 @@ If you want to check this app you need to install JSON server at your IDE.
 - install JSON in console in main folder: npm install json-server (you have to install npm node.js and before!);
 - open in terminal folder with kana.json and write in console: json-server --watch kana.json;
 
+## Screenshots
 ![home](./screenshots/home.png "Home page");
 
 ![cheat-sheet](./screenshots/cheatsheet.png "Cheat sheet");
 
 ![quiz](./screenshots/quiz1.png "Quiz");
 
+## Disclaimer
+This application is finished by using React. You can check it here: https://github.com/FAIRit/fe-kana-app;
+Link to KanaApp: https://kana-app-bf7bf.web.app/
